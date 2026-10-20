@@ -1,0 +1,89 @@
+{
+  "name": "icoviewer",
+  "displayName": "ICO Viewer",
+  "description": "Inspect ICO icons and CUR cursors. Preview every size and export PNGs.",
+  "icon": "resources/branding/icon.png",
+  "version": "0.1.0",
+  "publisher": "jcoc611",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Visualization"
+  ],
+  "main": "./dist/extension.cjs",
+  "activationEvents": [],
+  "contributes": {
+    "languages": [
+      {
+        "id": "ico-atlas-icon",
+        "aliases": ["ICO Image"],
+        "extensions": [".ico"],
+        "icon": {
+          "light": "./resources/icons/ico-light.svg",
+          "dark": "./resources/icons/ico-dark.svg"
+        }
+      },
+      {
+        "id": "ico-atlas-cursor",
+        "aliases": ["CUR Cursor"],
+        "extensions": [".cur"],
+        "icon": {
+          "light": "./resources/icons/cur-light.svg",
+          "dark": "./resources/icons/cur-dark.svg"
+        }
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "icoAtlas.viewer",
+        "displayName": "ICO Viewer",
+        "selector": [
+          {
+            "filenamePattern": "*.ico"
+          },
+          {
+            "filenamePattern": "*.cur"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "icoAtlas.outline",
+          "name": "ICO Outline",
+          "icon": "./resources/icons/ico-dark.svg"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "icoAtlas.open",
+        "title": "ICO Viewer: Open Icon or Cursor"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "watch": "node scripts/build.mjs --watch",
+    "dev": "npm run build && node scripts/serve.mjs",
+    "check": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "node --import tsx --test test/*.test.ts",
+    "vscode:prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.95.0",
+    "esbuild": "^0.25.0",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.72.0"
+  }
+}

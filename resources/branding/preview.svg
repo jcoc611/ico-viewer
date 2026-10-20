@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680">
+  <defs>
+    <g id="mark">
+      <path d="M12 5H5v7m15-7h7v7M5 20v7h7m8 0h7v-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="12" y="12" width="8" height="8" rx="1" fill="currentColor"/>
+    </g>
+    <g id="tile">
+      <rect width="256" height="256" rx="56" fill="#172e2b"/>
+      <path d="M104 64H64v40m88-40h40v40M64 152v40h40m48 0h40v-40" fill="none" stroke="#81e3c5" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="104" y="104" width="48" height="48" rx="6" fill="#81e3c5"/>
+    </g>
+  </defs>
+  <rect width="1200" height="680" fill="#f6f8f6"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif">
+    <text x="64" y="56" font-size="13" font-weight="600" letter-spacing="2" fill="#667771">ICO VIEWER / IDENTITY</text>
+    <use href="#tile" transform="translate(64 112) scale(.625)"/>
+    <text x="260" y="180" font-size="64" font-weight="600" letter-spacing="-2" fill="#172e2b">ICO Viewer</text>
+    <text x="263" y="225" font-size="23" fill="#52665f">Every size. Every pixel.</text>
+    <text x="64" y="322" font-size="18" fill="#52665f">A pixel inside a viewing frame. Simple shapes for a precise little tool.</text>
+    <rect x="64" y="370" width="340" height="210" rx="16" fill="#fff" stroke="#dfe7e2"/>
+    <use href="#mark" transform="translate(107 411) scale(2)" color="#087e86"/>
+    <text x="196" y="452" font-size="24" font-weight="600" fill="#172e2b">ICO Viewer</text>
+    <text x="88" y="550" font-size="13" fill="#667771">LIGHT SURFACES</text>
+    <rect x="428" y="370" width="340" height="210" rx="16" fill="#172e2b"/>
+    <use href="#mark" transform="translate(471 411) scale(2)" color="#81e3c5"/>
+    <text x="560" y="452" font-size="24" font-weight="600" fill="#effbf5">ICO Viewer</text>
+    <text x="452" y="550" font-size="13" fill="#a3bdb3">DARK SURFACES</text>
+    <rect x="792" y="370" width="344" height="210" rx="16" fill="#fff" stroke="#dfe7e2"/>
+    <use href="#mark" transform="translate(826 439) scale(.5)" color="#087e86"/>
+    <use href="#mark" transform="translate(866 435) scale(.75)" color="#087e86"/>
+    <use href="#mark" transform="translate(914 431)" color="#087e86"/>
+    <use href="#tile" transform="translate(985 415) scale(.25)"/>
+    <text x="816" y="550" font-size="13" fill="#667771">16 / 24 / 32 / 64 PX</text>
+    <circle cx="73" cy="628" r="7" fill="#087e86"/>
+    <text x="90" y="633" font-size="13" fill="#52665f">Teal #087E86</text>
+    <circle cx="263" cy="628" r="7" fill="#81e3c5"/>
+    <text x="280" y="633" font-size="13" fill="#52665f">Mint #81E3C5</text>
+    <circle cx="453" cy="628" r="7" fill="#172e2b"/>
+    <text x="470" y="633" font-size="13" fill="#52665f">Deep green #172E2B</text>
+  </g>
+</svg>
