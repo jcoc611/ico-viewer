@@ -64,7 +64,7 @@ After a watch rebuild, reload the browser or use **Developer: Reload Webviews** 
 - `fixtures/mixed.ico` — the same bundle with a PNG-backed 256 px resource
 - `fixtures/mixed.cur` — an original retro pixel arrow with an ivory fill, charcoal outline, mint tail cap, and tip hotspots; BMP/PNG resources at 16–256 px
 
-No runtime npm dependencies. The extension runs in the desktop/remote Node extension host; a browser extension host entry point is future work. The Marketplace extension ID is `jcoc611.icoviewer`. Before publishing, add the public repository URL and a `CHANGELOG.md`, confirm the `jcoc611` publisher account is registered, then package with the official VS Code extension tooling. Keep [LICENSE](LICENSE) with distributions, including its exclusion of the extension name and logo.
+No runtime npm dependencies. The extension runs in the desktop/remote Node extension host; a browser extension host entry point is future work. The Marketplace extension ID is `jcoc611.icoviewer`. Before publishing, update [CHANGELOG.md](CHANGELOG.md) for the release and package with the official VS Code extension tooling. Keep [LICENSE](LICENSE) with distributions, including its exclusion of the extension name and logo.
 
 ## Verification
 
