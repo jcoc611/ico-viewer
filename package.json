@@ -76,6 +76,7 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs",
+    "build:web": "node scripts/build-web.mjs",
     "watch": "node scripts/build.mjs --watch",
     "dev": "npm run build && node scripts/serve.mjs",
     "check": "tsc --noEmit",

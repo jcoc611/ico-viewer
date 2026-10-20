@@ -4,14 +4,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Inspect ICO icons and CUR cursors. Preview every size and export PNGs.">
-  <title>ICO Viewer</title>
+  <meta name="description" content="Inspect ICO icons and CUR cursors in your browser. Preview every size and export PNGs. Files stay on your device and are never uploaded.">
+  <meta name="application-name" content="ICO Viewer">
+  <meta name="robots" content="index, follow">
+  <meta name="color-scheme" content="light dark">
+  <title>ICO Viewer — Online ICO &amp; CUR Viewer and PNG Export</title>
+  <link rel="canonical" href="https://jcoc611.com/ico/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ICO Viewer — ICO &amp; CUR Viewer and PNG Export">
+  <meta property="og:description" content="Preview every image in ICO icons and CUR cursors, inspect sizes and transparency, and export PNGs. Files are processed locally and never uploaded.">
+  <meta property="og:url" content="https://jcoc611.com/ico/">
+  <meta property="og:site_name" content="ICO Viewer">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ICO Viewer — ICO &amp; CUR Viewer and PNG Export">
+  <meta name="twitter:description" content="Inspect icons and cursors in your browser and export PNGs. No uploads. Files stay on your device.">
   <link rel="icon" type="image/svg+xml" href="./icon.svg">
   <link rel="stylesheet" href="./viewer.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "ICO Viewer",
+      "url": "https://jcoc611.com/ico/",
+      "description": "View ICO icons and CUR cursors, inspect every embedded image, and export PNGs. Files are processed locally in the browser and never uploaded.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires a modern browser with JavaScript enabled.",
+      "featureList": ["ICO and CUR preview", "Image size and color depth inspection", "Transparency backgrounds", "PNG export", "Local file processing"],
+      "sameAs": ["https://github.com/jcoc611/ico-viewer", "https://marketplace.visualstudio.com/items?itemName=jcoc611.icoviewer"]
+    }
+  </script>
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <main>
+      <h1>ICO and CUR Viewer</h1>
+      <p>Preview ICO icons and CUR cursors, inspect each embedded image, and export PNGs.</p>
+      <p>Drag .ico or .cur files anywhere on the page to open them. Files stay on your device and are never uploaded.</p>
+      <p><a href="https://marketplace.visualstudio.com/items?itemName=jcoc611.icoviewer">Get the VS Code extension</a> · <a href="https://github.com/jcoc611/ico-viewer">View the source on GitHub</a></p>
+      <noscript><p>Enable JavaScript to open files and use the viewer.</p></noscript>
+    </main>
+  </div>
   <script src="./viewer.js" defer></script>
 </body>
 

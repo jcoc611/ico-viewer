@@ -15,7 +15,7 @@ npm run build
 
 **VS Code:** open this repository in VS Code and press **F5** (Run ICO Viewer). In the Extension Development Host, open `fixtures/atlas.ico`, `fixtures/mixed.ico`, or `fixtures/mixed.cur`. The viewer registers as the default custom editor for `*.ico` and `*.cur`. Existing editor associations can override this; use **Reopen Editor With… → ICO Viewer**. **ICO Viewer: Open Icon or Cursor** is also available in the Command Palette.
 
-**Web utility:** run `npm run dev`, then visit [localhost:5173](http://127.0.0.1:5173). Open a file or drop it onto the page. A sample bundle appears initially. Files are parsed locally; no service or upload is involved. The static `dist/` directory can also be served by any static HTTP server.
+**Web utility:** run `npm run dev`, then visit [localhost:5173](http://127.0.0.1:5173). Open a file or drop it anywhere on the page. The viewer starts with a drop area; **Show Sample** opens the sample bundle. Files are parsed locally; no service or upload is involved. The static `dist/` directory can also be served by any static HTTP server.
 
 ## File icons
 
@@ -51,10 +51,13 @@ npm run check    # TypeScript checks
 npm run lint     # ESLint checks for authored JavaScript and TypeScript
 npm test        # parser and bitmap decoder tests
 npm run build   # extension + standalone static web utility
+npm run build:web  # minified web-only bundle in dist/web/
 node --import tsx scripts/fixtures.ts  # regenerate the sample icons and cursor
 ```
 
 After a watch rebuild, reload the browser or use **Developer: Reload Webviews** in the Extension Development Host.
+
+For the production website at `https://jcoc611.com/ico/`, run `npm run build:web` and copy the four files from `dist/web/` into the Pages repository's `ico/` folder. The bundle contains `index.html`, `viewer.css`, `viewer.js`, and `icon.svg`, uses relative asset URLs, and includes the license notice in the JavaScript. The HTML includes a canonical URL, social metadata, structured application data, and fallback content. No server or runtime dependencies are needed.
 
 - `src/ico.ts` — shared parser, DIB decoder, deterministic sample
 - `src/viewer.ts` — shared browser/webview interface
