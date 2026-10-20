@@ -5,3 +5,9 @@ scripts/**
 node_modules/**
 tsconfig.json
 web/**
+fixtures/**
+eslint.config.mjs
+.gitignore
+dist/**/*.map
+dist/index.html
+dist/icon.svg

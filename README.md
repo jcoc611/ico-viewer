@@ -1,4 +1,4 @@
-<img src="resources/branding/icon.svg" width="80" height="80" alt="ICO Viewer logo: a pixel inside a viewing frame">
+<img src="resources/branding/icon.png" width="80" height="80" alt="ICO Viewer logo: a pixel inside a viewing frame">
 
 # ICO Viewer
 
