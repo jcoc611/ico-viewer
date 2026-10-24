@@ -1,37 +1,21 @@
 import * as vscode from 'vscode';
 import { randomBytes } from 'node:crypto';
-import { parseIco, MAX_FILE_SIZE, type IconEntry } from './ico';
+import { parseIco, MAX_FILE_SIZE } from './ico';
 const viewType = 'icoAtlas.viewer';
-interface IconDocument extends vscode.CustomDocument { entries: IconEntry[]; bytes: Uint8Array; }
-interface Session { document: IconDocument; panel: vscode.WebviewPanel; }
+interface IconDocument extends vscode.CustomDocument { bytes: Uint8Array; }
 export function activate(context: vscode.ExtensionContext) {
   const fileIcon = (kind: 'ico' | 'cur') => ({
     light: vscode.Uri.joinPath(context.extensionUri, 'resources', 'icons', `${kind}-light.svg`),
     dark: vscode.Uri.joinPath(context.extensionUri, 'resources', 'icons', `${kind}-dark.svg`)
   });
-  let active: Session | undefined;
-  const changed = new vscode.EventEmitter<void>();
-  const tree = vscode.window.createTreeView<IconEntry>('icoAtlas.outline', { treeDataProvider: {
-    onDidChangeTreeData: changed.event,
-    getChildren: () => active?.document.entries ?? [],
-    getTreeItem: entry => {
-      const item = new vscode.TreeItem(`${entry.width} × ${entry.height}`, vscode.TreeItemCollapsibleState.None);
-      item.description = `${entry.bitDepth}-bit · ${entry.encoding}${entry.hotspot ? ` · Hotspot (${entry.hotspot.x}, ${entry.hotspot.y})` : ''}`;
-      item.iconPath = fileIcon(entry.hotspot ? 'cur' : 'ico');
-      item.command = { command: 'icoAtlas.select', title: 'View image', arguments: [entry.index] };
-      item.id = String(entry.index);
-      return item;
-    }
-  }});
-  const setActive = (session?: Session) => { active=session; changed.fire(); };
   const provider: vscode.CustomReadonlyEditorProvider<IconDocument> = {
     async openCustomDocument(uri) {
       if ((await vscode.workspace.fs.stat(uri)).size > MAX_FILE_SIZE) throw Error('This icon exceeds the 64 MB limit.');
       const bytes = await vscode.workspace.fs.readFile(uri);
-      return {uri,bytes,entries:parseIco(bytes),dispose(){}};
+      parseIco(bytes);
+      return {uri,bytes,dispose(){}};
     },
     async resolveCustomEditor(document,panel) {
-      const session={document,panel};
       panel.iconPath = fileIcon(/\.cur$/i.test(document.uri.path) ? 'cur' : 'ico');
       panel.webview.options={enableScripts:true,localResourceRoots:[vscode.Uri.joinPath(context.extensionUri,'dist')]};
       const asset=(name:string)=>panel.webview.asWebviewUri(vscode.Uri.joinPath(context.extensionUri,'dist',name)).toString();
@@ -47,12 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
           const target=await vscode.window.showSaveDialog({defaultUri:vscode.Uri.joinPath(document.uri,'..',filename),filters:{'PNG image':['png']}});
           if(target)try{await vscode.workspace.fs.writeFile(target,bytes);}catch(error){void vscode.window.showErrorMessage(`Could not export image: ${error}`);}
         }
-        if(message?.type==='select' && Number.isInteger(message.index) && active===session){
-          const entry=document.entries[message.index];
-          if(entry) void tree.reveal(entry,{select:true,focus:false}).then(undefined,()=>{});
-        }
-      }),panel.onDidChangeViewState(()=>{if(panel.active)setActive(session);else if(active===session)setActive();}),panel.onDidDispose(()=>{if(active===session)setActive();}));
-      if(panel.active)setActive(session);
+      }));
       // Reload on external changes without overwriting a newer update with an older read.
       let generation=0;
       const watcher=vscode.workspace.createFileSystemWatcher(new vscode.RelativePattern(vscode.Uri.joinPath(document.uri,'..'),document.uri.path.split('/').pop()!));
@@ -60,18 +39,18 @@ export function activate(context: vscode.ExtensionContext) {
         const current=++generation;
         try{
           if((await vscode.workspace.fs.stat(document.uri)).size>MAX_FILE_SIZE)throw Error('This icon exceeds the 64 MB limit.');
-          const bytes=await vscode.workspace.fs.readFile(document.uri),entries=parseIco(bytes);
+          const bytes=await vscode.workspace.fs.readFile(document.uri);
+          parseIco(bytes);
           if(current!==generation)return;
-          document.bytes=bytes;document.entries=entries;if(active===session)changed.fire();await send();
-        }catch(error){if(current===generation){document.entries=[];if(active===session)changed.fire();void panel.webview.postMessage({type:'error',message:String(error)});}}
+          document.bytes=bytes;await send();
+        }catch(error){if(current===generation){void panel.webview.postMessage({type:'error',message:String(error)});}}
       };
-      watcher.onDidChange(refresh);watcher.onDidDelete(()=>{generation++;document.entries=[];if(active===session)changed.fire();void panel.webview.postMessage({type:'error',message:'This file has been deleted.'});});
+      watcher.onDidChange(refresh);watcher.onDidDelete(()=>{generation++;void panel.webview.postMessage({type:'error',message:'This file has been deleted.'});});
       panel.onDidDispose(()=>watcher.dispose());
     }
   };
-  context.subscriptions.push(changed,tree,
+  context.subscriptions.push(
     vscode.window.registerCustomEditorProvider(viewType,provider,{supportsMultipleEditorsPerDocument:true}),
-    vscode.commands.registerCommand('icoAtlas.select',(index:number)=>{if(active){void active.panel.webview.postMessage({type:'select',index});active.panel.reveal(undefined,true);}}),
     vscode.commands.registerCommand('icoAtlas.open',async()=>{const files=await vscode.window.showOpenDialog({canSelectMany:false,filters:{'Icons and cursors':['ico','cur']}});if(files?.[0])await vscode.commands.executeCommand('vscode.openWith',files[0],viewType);})
   );
 }

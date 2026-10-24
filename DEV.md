@@ -19,7 +19,7 @@ npm run build
 
 ## File icons
 
-The extension includes distinct 16 px SVG icons for `.ico` (the framed-pixel mark) and `.cur` (a cursor arrow), with light and dark variants. Viewer tabs and outline entries use these icons. File-type defaults are registered at installation for Explorer and other file lists.
+The extension includes distinct 16 px SVG icons for `.ico` (the framed-pixel mark) and `.cur` (a cursor arrow), with light and dark variants. Viewer tabs use these icons. File-type defaults are registered at installation for Explorer and other file lists.
 
 Explorer icons follow [VS Code's file icon theme rules](https://code.visualstudio.com/api/extension-guides/file-icon-theme#language-default-icons): themes with an existing filename, extension, or language icon take precedence. For example, the built-in Seti theme keeps its existing `.ico` icon and uses the new cursor icon for `.cur`. Themes that disable language icons, Minimal, and None will not display these defaults. The extension does not change your selected icon theme or settings.
 
@@ -29,13 +29,12 @@ Explorer icons follow [VS Code's file icon theme rules](https://code.visualstudi
 - Click a grid item for a full-page preview with a thin metadata and controls bar.
 - Escape or **Grid** returns to the collection. Left/right arrows navigate images.
 - 100% / 200% / 400% / fit zoom, transparency backgrounds, and PNG export at original resolution.
-- Cursor hotspot coordinates (x, y pixels from the top-left) in the preview metadata and Explorer outline.
-- **ICO Outline** in VS Code's Explorer, synchronized with the active icon or cursor editor. Select an entry to inspect that resource.
+- Cursor hotspot coordinates (x, y pixels from the top-left) in the preview metadata.
 - VS Code theme colors, split-editor support, and reloads when files change externally.
 
 ### Outline API limitation
 
-The stable VS Code API does not provide binary custom editors with a native Outline provider. This bootstrap provides a dedicated **ICO Outline** tree in Explorer without adding a sidebar inside the editor. It does not claim to populate VS Code's built-in Outline. See [the current upstream request](https://github.com/microsoft/vscode/issues/327247).
+The stable VS Code API does not provide binary custom editors with a native Outline provider. Image navigation stays inside the viewer through the grid and left/right arrow keys; the extension does not contribute a separate Explorer view. See [the current upstream request](https://github.com/microsoft/vscode/issues/327247).
 
 ## Format support
 
@@ -61,7 +60,7 @@ For the production website at `https://jcoc611.com/ico/`, run `npm run build:web
 
 - `src/ico.ts` — shared parser, DIB decoder, deterministic sample
 - `src/viewer.ts` — shared browser/webview interface
-- `src/extension.ts` — custom editor, native tree, filesystem watching, export
+- `src/extension.ts` — custom editor, filesystem watching, export
 - `web/viewer.css` — responsive styling and VS Code theme integration
 - `fixtures/atlas.ico` — seven bitmap resources, 16–256 px
 - `fixtures/mixed.ico` — the same bundle with a PNG-backed 256 px resource

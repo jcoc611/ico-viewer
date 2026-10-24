@@ -2,6 +2,12 @@
 
 All notable changes to ICO Viewer are documented here.
 
+## [0.1.3] - 2026-10-24
+
+### Removed
+
+- Remove the always-visible ICO Outline section from Explorer. Binary custom editors cannot populate VS Code's standard Outline through the stable API; embedded images remain accessible in the viewer grid and preview.
+
 ## [0.1.2] - 2026-10-23
 
 ### Changed

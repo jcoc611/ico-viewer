@@ -3,7 +3,7 @@
   "displayName": "ICO Viewer",
   "description": "View .ico icons, favicon.ico files, and .cur cursors. Inspect embedded image sizes and transparency, and export images to PNG.",
   "icon": "resources/branding/icon.png",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "jcoc611",
   "license": "MIT",
   "repository": {
@@ -80,15 +80,6 @@
         "priority": "default"
       }
     ],
-    "views": {
-      "explorer": [
-        {
-          "id": "icoAtlas.outline",
-          "name": "ICO Outline",
-          "icon": "./resources/icons/ico-dark.svg"
-        }
-      ]
-    },
     "commands": [
       {
         "command": "icoAtlas.open",

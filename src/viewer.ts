@@ -165,7 +165,7 @@ async function load(bytes: Uint8Array, filename: string, isSample = false) {
     setDetail(saved?.detailOpen === true);
   } catch (error) { notice(error instanceof Error ? error.message : String(error)); }
 }
-function select(index: number, notify = true) {
+function select(index: number) {
   const entry = entries[index];
   if (!entry) return;
   selected = index;
@@ -184,7 +184,6 @@ function select(index: number, notify = true) {
   el('decode-error').hidden = !failures.has(index);
   el<HTMLButtonElement>('export').disabled = !urls[index];
   applyZoom();
-  if (notify) vscode?.postMessage({ type: 'select', index });
 }
 function applyZoom() {
   const entry = entries[selected];
@@ -261,9 +260,6 @@ if (vscode) {
     const message = event.data;
     if (message?.type === 'load') {
       void load(Uint8Array.from(atob(message.bytes), c => c.charCodeAt(0)), message.name);
-    } else if (message?.type === 'select') {
-      select(message.index, false);
-      setDetail(true);
     } else if (message?.type === 'error') {
       ++renderVersion;
       urls.forEach(url => { if (url) URL.revokeObjectURL(url); });
