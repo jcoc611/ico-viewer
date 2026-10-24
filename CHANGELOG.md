@@ -2,6 +2,19 @@
 
 All notable changes to ICO Viewer are documented here.
 
+## [0.1.2] - 2026-10-23
+
+### Changed
+
+- Add relevant Marketplace search keywords and clarify ICO, CUR, favicon, and PNG export support in the listing description and README.
+- Add a direct installation link and usage answers to the README, and remove its redundant header logo.
+
+## [0.1.1] - 2026-10-20
+
+### Fixed
+
+- Match the VS Code editor background in the icon grid while preserving the transparency checkerboard in image previews.
+
 ## [0.1.0] - 2026-10-19
 
 ### Added

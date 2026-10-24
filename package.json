@@ -1,9 +1,9 @@
 {
   "name": "icoviewer",
   "displayName": "ICO Viewer",
-  "description": "Inspect ICO icons and CUR cursors. Preview every size and export PNGs.",
+  "description": "View .ico icons, favicon.ico files, and .cur cursors. Inspect embedded image sizes and transparency, and export images to PNG.",
   "icon": "resources/branding/icon.png",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "publisher": "jcoc611",
   "license": "MIT",
   "repository": {
@@ -20,14 +20,32 @@
   "categories": [
     "Visualization"
   ],
+  "keywords": [
+    "ico",
+    "cur",
+    "ico viewer",
+    "cur viewer",
+    "icon viewer",
+    "cursor viewer",
+    "image preview",
+    "favicon",
+    "favicon.ico",
+    "png export",
+    "ico to png",
+    "cur to png"
+  ],
   "main": "./dist/extension.cjs",
   "activationEvents": [],
   "contributes": {
     "languages": [
       {
         "id": "ico-atlas-icon",
-        "aliases": ["ICO Image"],
-        "extensions": [".ico"],
+        "aliases": [
+          "ICO Image"
+        ],
+        "extensions": [
+          ".ico"
+        ],
         "icon": {
           "light": "./resources/icons/ico-light.svg",
           "dark": "./resources/icons/ico-dark.svg"
@@ -35,8 +53,12 @@
       },
       {
         "id": "ico-atlas-cursor",
-        "aliases": ["CUR Cursor"],
-        "extensions": [".cur"],
+        "aliases": [
+          "CUR Cursor"
+        ],
+        "extensions": [
+          ".cur"
+        ],
         "icon": {
           "light": "./resources/icons/cur-light.svg",
           "dark": "./resources/icons/cur-dark.svg"

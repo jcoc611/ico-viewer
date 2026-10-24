@@ -69,6 +69,14 @@ For the production website at `https://jcoc611.com/ico/`, run `npm run build:web
 
 No runtime npm dependencies. The extension runs in the desktop/remote Node extension host; a browser extension host entry point is future work. The Marketplace extension ID is `jcoc611.icoviewer`. Before publishing, update [CHANGELOG.md](CHANGELOG.md) for the release and package with the official VS Code extension tooling. Keep [LICENSE](LICENSE) with distributions, including its exclusion of the extension name and logo.
 
+### Marketplace discoverability
+
+Keep the **ICO Viewer** name and `jcoc611.icoviewer` ID stable. The description and `keywords` in `package.json` cover supported formats, viewing, favicon inspection, and PNG export. Keep the category as **Visualization**. Avoid tags for icon themes, icon editing or creation, animated cursors, and unrelated formats or products.
+
+VS Code uses the display name and description for text search, and keywords become Marketplace tags; see the [official manifest guidance](https://code.visualstudio.com/api/references/extension-manifest#marketplace-presentation-tips). The current limit is 30 keywords, not a target to fill. Keep the README's opening, installation link, demo, and support limits accurate as features change.
+
+After publishing a release, check the live listing's tags, images, links, and install flow. Try searches such as `ico viewer`, `cur viewer`, `favicon`, and `ico to png` in both the Marketplace and VS Code. Record the release date and available acquisition/install metrics in release notes or maintainer records, and compare trends over several weeks before changing metadata again. Search placement varies and metadata changes do not guarantee ranking or install growth.
+
 ## Verification
 
 Before submitting a change, run `npm run check`, `npm run lint`, `npm test`, and `npm run build`. For UI changes, also check the affected workflow in the browser and Extension Development Host.

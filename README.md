@@ -1,10 +1,11 @@
-<img src="resources/branding/icon.png" width="80" height="80" alt="ICO Viewer logo: a pixel inside a viewing frame">
-
 # ICO Viewer
 
 <p align="center"><img src="resources/ico-viewer-demo.gif" alt="ICO Viewer in action" width="800"></p>
 
-See what's inside your icons and cursors without leaving VS Code. Open an `.ico` or `.cur` file, browse its embedded images, and click one to take a closer look.
+View `.ico` icons, `favicon.ico` files, and `.cur` cursors in VS Code. Browse every embedded image size, inspect transparency and color depth, and export supported images to PNG.
+
+[Install ICO Viewer from the Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=jcoc611.icoviewer)
+
 
 ## Why ICO Viewer?
 
@@ -17,13 +18,23 @@ An icon file can contain several images at different sizes and color depths. VS 
 
 Files are processed locally. No account, uploads, or configuration needed.
 
-## Simple to use
+## Install and open an icon or cursor
+
+In VS Code's Extensions view, search for **ICO Viewer** by **jcoc611**, or use the [Marketplace listing](https://marketplace.visualstudio.com/items?itemName=jcoc611.icoviewer). The extension ID is `jcoc611.icoviewer`.
 
 With ICO Viewer installed, open an `.ico` or `.cur` file in VS Code. Click an image to inspect it, use the arrow keys to move between images, and press **Escape** to return to the grid.
 
 If another viewer opens, choose **Reopen Editor With… → ICO Viewer**. You can also run **ICO Viewer: Open Icon or Cursor** from the Command Palette.
 
 Supports ICO icons and static CUR cursors with PNG or uncompressed bitmap images. See [format support](DEV.md#format-support) for details and limits.
+
+## Common questions
+
+**Can I preview a favicon?** Yes. Open a `favicon.ico` file to compare its embedded sizes and check transparency. Other favicon formats, such as standalone SVG and PNG files, use VS Code's existing viewers.
+
+**Can I convert ICO or CUR to PNG?** Open the file, select a supported embedded image, and choose **Export PNG**. Each export keeps that image's original resolution; it does not resize images or batch-convert files.
+
+**Can I edit or create icons and cursors?** ICO Viewer is a viewer and PNG exporter. It does not modify ICO or CUR files, create icons from PNGs, or play animated `.ani` cursors.
 
 ## Contributing
 
